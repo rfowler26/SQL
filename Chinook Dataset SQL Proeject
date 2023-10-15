@@ -61,5 +61,16 @@ WHERE title LIKE "%manager%";
 SELECT art.Name as Artist, alb.Title as Album
 FROM chinook.artists art
 INNER JOIN chinook.albums alb
-ON art.Artistid=alb.Albumid
-ORDER BY art.Name
+ON art.Artistid=alb.Artistid
+ORDER BY art.Name, alb.title
+
+#11. Shows all the Tracks, and include the Album name, Media type, and Genre.SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
+FROM chinook.tracks t
+JOIN chinook.Albums a 
+on a.AlbumId = t.AlbumId
+JOIN chinook.Media_Types m
+on m.MediaTypeId = t.MediaTypeId
+JOIN chinook.Genres g
+on g.GenreId = t.GenreId;
+
+
