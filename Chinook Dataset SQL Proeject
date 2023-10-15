@@ -1,0 +1,65 @@
+
+
+#1. Show Customers (their full names, customer ID, and country) who are not in the US.
+SELECT Customerid,Firstname,Lastname,country
+FROM chinook.customers
+WHERE country <> "USA"
+ORDER By country
+
+
+#2. Show Customers (their full names, customer ID, and country) who are only in the USA
+SELECT Customerid, Firstname,Lastname,country
+FROM chinook.customers
+WHERE country="USA"
+ORDER BY Customerid
+
+
+#3. Showing a distinct list of billing countries from the Invoice table
+SELECT Distinct Billingcountry
+FROM chinook.invoices
+ORDER BY billingcountry
+
+
+#4. Showing Full name of all customers in the USA, there invoice date, company, and billing address 
+SELECT cust.Firstname,cust.Lastname,inv.invoiceDate,cust.company,inv.BillingAddress
+FROM chinook.invoices inv
+INNER JOIN chinook.customers cust
+ON inv.customerID=cust.customerID
+WHERE country="USA"
+ORDER BY invoicedate
+
+#5. Showing Full name of all customers in every country except USA, there invoice date, company, billing address, and country
+SELECT cust.Firstname,cust.Lastname,inv.invoiceDate,cust.company,inv.BillingAddress, cust.country
+FROM chinook.invoices inv
+INNER JOIN chinook.customers cust
+ON inv.customerID=cust.customerID
+WHERE country<>"USA"
+ORDER BY invoicedate;
+
+#6. Shows how many invoices there were in the year 2013
+SELECT COUNT(invoiceDate) as Total_Invoices
+FROM chinook.invoices
+WHERE invoicedate LIKE "%2013%"
+
+#7.Shows ho wmany invoices there bewtween July-September 2013
+SELECT Count(invoiceDate)
+FROM chinook.invoices
+WHERE invoicedate BETWEEN "2013-07-01" and "2013-09-30"
+
+#8. Shows Total Sales in the year 2013
+SELECT SUM(Total) as Total_Sales
+FROM chinook.Invoices
+WHERE InvoiceDate LIKE "%2013%"
+
+#9. Shows all the employees who are managers
+SELECT Firstname,Lastname,title
+FROM chinook.employees
+WHERE title LIKE "%manager%";
+
+
+#10. Organizes data by artist and there albums
+SELECT art.Name as Artist, alb.Title as Album
+FROM chinook.artists art
+INNER JOIN chinook.albums alb
+ON art.Artistid=alb.Albumid
+ORDER BY art.Name
