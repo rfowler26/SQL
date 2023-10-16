@@ -64,7 +64,7 @@ INNER JOIN chinook.albums alb
 ON art.Artistid=alb.Artistid
 ORDER BY art.Name, alb.title
 
-#11. Shows all the Tracks, and include the Album name, Media type, and Genre.SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
+#11. Shows all the Tracks, and includes the Album name, Media type, and Genre.SELECT t.Name AS 'Track Name', a.Title AS 'Album Title', m.Name AS 'Media Type', g.Name AS 'Genre'
 FROM chinook.tracks t
 JOIN chinook.Albums a 
 on a.AlbumId = t.AlbumId
@@ -73,4 +73,16 @@ on m.MediaTypeId = t.MediaTypeId
 JOIN chinook.Genres g
 on g.GenreId = t.GenreId;
 
+#12. Shows all artist, and includes the Album name, Playlist name, Playlist ID, and Track ID
+SELECT art.name as Artist,alb.title as Album,pl.name AS playlist_name, pt.playlistid, t.trackid
+FROM chinook.playlists pl
+INNER JOIN chinook.playlist_track pt
+ON pl.playlistid = pt.playlistid
+INNER JOIN chinook.tracks t
+ON t.trackid = pt.trackid
+INNER JOIN chinook.albums alb
+ON alb.albumid=t.albumid
+INNER JOIN chinook.artists art
+ON art.artistid=alb.artistid
+GROUP BY art.name
 
