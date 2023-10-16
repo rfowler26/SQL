@@ -6,19 +6,16 @@ FROM chinook.customers
 WHERE country <> "USA"
 ORDER By country
 
-
 #2. Show Customers (their full names, customer ID, and country) who are only in the USA
 SELECT Customerid, Firstname,Lastname,country
 FROM chinook.customers
 WHERE country="USA"
 ORDER BY Customerid
 
-
 #3. Showing a distinct list of billing countries from the Invoice table
 SELECT Distinct Billingcountry
 FROM chinook.invoices
 ORDER BY billingcountry
-
 
 #4. Showing Full name of all customers in the USA, there invoice date, company, and billing address 
 SELECT cust.Firstname,cust.Lastname,inv.invoiceDate,cust.company,inv.BillingAddress
@@ -55,7 +52,6 @@ WHERE InvoiceDate LIKE "%2013%"
 SELECT Firstname,Lastname,title
 FROM chinook.employees
 WHERE title LIKE "%manager%";
-
 
 #10. Organizes data by artist and there albums
 SELECT art.Name as Artist, alb.Title as Album
